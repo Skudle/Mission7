@@ -9,8 +9,6 @@ def get_words ( line ):
         word_list.append(word)
     return word_list
 
-print(get_words("The bana.na i;s :  yellow,"))
-
 
 def readfile ( filename ):
     line = []
@@ -20,9 +18,27 @@ def readfile ( filename ):
         f.close()
         return line
 
-print(readfile('test.txt'))
+def create_index ( filename ):
+  dico = {
+  }
+  list = []
+  with open(filename, 'r') as f:
+    for line in f.readlines():
+        line = line.strip().split()
+        list.append(line)
+    
+    for l in range (len(list)):
+        for lil in list[l]:
+            if lil not in dico:
+                dico[lil] = [l]
+            else:
+                if dico[lil] == [l]:
+                    pass
+                else:
+                    dico[lil].append(l)
+        
+    return dico
 
-#def create_index ( filename ):
 
 
       
