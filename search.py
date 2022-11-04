@@ -15,30 +15,23 @@ def readfile ( filename ):
     with open(filename, 'r') as f:
         for i in f.readlines():
             line.append(i)
-        f.close()
         return line
 
 def create_index ( filename ):
-  dico = {
-  }
-  list = []
-  with open(filename, 'r') as f:
-    for line in f.readlines():
-        line = line.strip().split()
-        list.append(line)
-    
+    dico ={
+    }
+    list = readfile(filename)
     for l in range (len(list)):
-        for lil in list[l]:
-            if lil not in dico:
-                dico[lil] = [l]
+        lil = get_words(list[l])
+        for i in range (len(lil)):
+            if lil[i] not in dico:
+                dico[lil[i]] = [l]
             else:
-                if dico[lil] == [l]:
-                    pass
-                else:
-                    dico[lil].append(l)
+                    if dico[lil[i]] == [l]:
+                        pass
+                    else:
+                        dico[lil[i]].append(l)
         
     return dico
 
-
-
-      
+print(create_index('test.txt'))
