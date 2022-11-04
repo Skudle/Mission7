@@ -27,10 +27,10 @@ def create_index ( filename ):
             if lil[i] not in dico:
                 dico[lil[i]] = [l]
             else:
-                    if dico[lil[i]] == [l]:
-                        pass
-                    else:
-                        dico[lil[i]].append(l)
+                if dico[lil[i]] == [l]:
+                    pass
+                else:
+                    dico[lil[i]].append(l)
         
     return dico
 
