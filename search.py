@@ -1,4 +1,10 @@
 def get_words ( line ):
+    """Transforms a phrase into a list without special symbols
+    
+    Args: a string
+    
+    returns: a list of strings"""
+    
     word_list = []
     for w in line.split():
       word=''
@@ -11,6 +17,11 @@ def get_words ( line ):
 
 
 def readfile ( filename ):
+    """opens a file and read it line by line
+    Args: a string
+    
+    returns: a list of string"""
+    
     line = []
     with open(filename, 'r') as f:
         for i in f.readlines():
@@ -18,6 +29,10 @@ def readfile ( filename ):
         return line
 
 def create_index ( filename ):
+    """create index for words and put them in the dictionary
+    Args: a string
+    returns: a dictionary
+    """
     dico ={
     }
     list = readfile(filename)
