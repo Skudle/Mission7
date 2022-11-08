@@ -23,17 +23,22 @@ def treatment(data):
         for i in range (len(data)-1):
             if convert(data[i]) == convert(data[i+1]):
                 counter+=1
+                #Probleme: sort de la boucle avant d'additioner dans treatment quand i atteint la valeur max
                 
             else:
                 treatment += convert(data[i]) + str(counter)
                 treatment += ' '
                 counter = 1
+                if i == (len(data)-2):
+                    x = convert(data[-1])
+                    treatment += x + str(counter)
+                    
             
                 
                 
     return treatment
 
 
-print(treatment('a7aeix'))
+print(treatment('78huy'))
 
         
