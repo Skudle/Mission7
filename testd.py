@@ -1,8 +1,6 @@
 def carabosse(s):
     state = True
     lc = 0
-    if (len(s)) == 0:
-        return 'Erreur 0'
     for o in range (len(s)):
         if s[0] == '*':
             continue
@@ -12,6 +10,8 @@ def carabosse(s):
             
         else:
             break
+    if (len(s)) == 0:
+        return 'Erreur 0'
     else:
         last_carac = s[-1]
         x = -1
