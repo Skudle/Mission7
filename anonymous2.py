@@ -1,13 +1,13 @@
 def convert(args):
     if str(args).isnumeric():
             return 'number*'
-    elif args[0].lower() in 'aueioy':
-        if args[0].isupper():
+    elif args.lower() in 'aueioy':
+        if args.isupper():
             return 'vowel-up*'
         else:
             return 'vowel-low*'
     else:   
-        if args[0].islower():
+        if args.islower():
             return 'consonant-low*'
         else:
             return 'consonant-up*'
@@ -23,7 +23,9 @@ def treatment(data):
         for i in range (len(data)-1):
             if convert(data[i]) == convert(data[i+1]):
                 counter+=1
-                #Probleme: sort de la boucle avant d'additioner dans treatment quand i atteint la valeur max
+                if i == (len(data)-2):
+                    treatment += convert(data[i]) + str(counter)
+                    treatment += ' '
                 
             else:
                 treatment += convert(data[i]) + str(counter)
@@ -39,6 +41,6 @@ def treatment(data):
     return treatment
 
 
-print(treatment('78huy'))
+print(treatment('66AeB7'))
 
         
