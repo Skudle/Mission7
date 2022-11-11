@@ -30,7 +30,7 @@ def readfile ( filename ):
             return line
     except FileNotFoundError:
         return "Fichier inexistant"
-#print(readfile('text_example_1.txt'))
+
 
 
 def create_index ( filename ):
@@ -40,9 +40,8 @@ def create_index ( filename ):
     """
     dico ={
     }
-    try:
-        list = readfile(filename)
-    except FileNotFoundError:
+    list = readfile(filename)
+    if list == "Fichier inexistant":
         return "Fichier inexistant"
     for l in range (len(list)):
         lil = get_words(list[l])
@@ -56,12 +55,19 @@ def create_index ( filename ):
                     dico[lil[i]].append(l)
         
     return dico
-#index = {"while": [0], "the": [0,1], "congress": [0], "of": [0,1], "republic": [0], "jedi": [2]}
+
 def get_lines ( words, index ):
     list2 = []
     list3 = []
     for o in words:
-        list2.append(index[o])
+        try:
+            list2.append(index[o])
+        except KeyError:
+            list2 = []
+            return list2
+        except TypeError:
+            return "Le fichier n'existe pas"
+            
     same = all(element == list2[0] for element in list2)
     if same:
         return list2[0]
@@ -74,5 +80,4 @@ def get_lines ( words, index ):
         flat_list = [ item for elem in list3 for item in elem]
         return flat_list
 
-#print(get_lines(["the"], index))
-
+print(get_lines(['used'], create_index('PythonSecretCode.txt')))
