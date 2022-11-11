@@ -14,7 +14,7 @@ def get_words ( line ):
       if len(word)>0:
         word_list.append(word)
     return word_list
-
+    
 
 def readfile ( filename ):
     """opens a file and read it line by line
@@ -23,8 +23,15 @@ def readfile ( filename ):
     returns: a list of string"""
     
     line = []
-    with open(filename, 'r') as f:
-        return f.readlines()
+    try:
+        with open(filename, 'r') as f:
+            for s in f:
+                line.append(s.replace("\n", ""))
+            return line
+    except FileNotFoundError:
+        return "Fichier inexistant"
+#print(readfile('text_example_1.txt'))
+
 
 def create_index ( filename ):
     """create index for words and put them in the dictionary
@@ -33,7 +40,10 @@ def create_index ( filename ):
     """
     dico ={
     }
-    list = readfile(filename)
+    try:
+        list = readfile(filename)
+    except FileNotFoundError:
+        return "Fichier inexistant"
     for l in range (len(list)):
         lil = get_words(list[l])
         for i in range (len(lil)):
@@ -46,22 +56,16 @@ def create_index ( filename ):
                     dico[lil[i]].append(l)
         
     return dico
-
-
-index = {"while": [0], "the": [0,1], "congress": [0], \
-                  "of": [0,1], "republic": [0] , "jedi": [2],}
+#index = {"while": [0], "the": [0,1], "congress": [0], "of": [0,1], "republic": [0], "jedi": [2]}
 def get_lines ( words, index ):
-    list1 = []
     list2 = []
     list3 = []
-    for i in range (len(words)):
-        list1.append(words[i])
-    
-    for o in list1:
+    for o in words:
         list2.append(index[o])
     same = all(element == list2[0] for element in list2)
     if same:
         return list2[0]
+
     else:
         result = set(list2[0])
         for s in list2[1:]:
@@ -70,4 +74,5 @@ def get_lines ( words, index ):
         flat_list = [ item for elem in list3 for item in elem]
         return flat_list
 
+#print(get_lines(["the"], index))
 
