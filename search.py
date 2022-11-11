@@ -24,9 +24,7 @@ def readfile ( filename ):
     
     line = []
     with open(filename, 'r') as f:
-        for i in f.readlines():
-            line.append(i)
-        return line
+        return f.readlines()
 
 def create_index ( filename ):
     """create index for words and put them in the dictionary
@@ -49,4 +47,26 @@ def create_index ( filename ):
         
     return dico
 
-print(create_index('test.txt'))
+index = {"while": [0], "the": [0,1], "congress": [0], \
+                  "of": [0,1], "republic": [0] , "jedi": [2],}
+def get_lines ( words, index ):
+    list1 = []
+    list2 = []
+    list3 = []
+    for i in range (len(words)):
+        list1.append(words[i])
+    
+    for o in list1:
+        list2.append(index[o])
+    same = all(element == list2[0] for element in list2)
+    if same:
+        return list2[0]
+    else:
+        result = set(list2[0])
+        for s in list2[1:]:
+            result.intersection_update(s)
+        list3.append((list(result)))
+        flat_list = [ item for elem in list3 for item in elem]
+        return flat_list
+
+
