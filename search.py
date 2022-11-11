@@ -47,6 +47,7 @@ def create_index ( filename ):
         
     return dico
 
+
 index = {"while": [0], "the": [0,1], "congress": [0], \
                   "of": [0,1], "republic": [0] , "jedi": [2],}
 def get_lines ( words, index ):
